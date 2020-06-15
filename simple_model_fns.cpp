@@ -11,6 +11,7 @@ const double Geps2 = 1;
 
 double Gphi [XSIZE][YSIZE]; 
 
+//Checks whether we're at the boundary and loops back to the other side if we are for periodic boundary
 int checkbc(int i, int lambda){
 
     if (i > (lambda - 1)){
@@ -24,6 +25,7 @@ int checkbc(int i, int lambda){
     }
 }
 
+//Calculates derivative of f wrt phi
 double dfdphi(int i, int j){
     double term1, term2;
     double p = Gphi[i][j];
@@ -34,6 +36,7 @@ double dfdphi(int i, int j){
     return term1+term2;
 }
 
+//Calculates laplacian 
 double laplac(int i, int j){
     double xderiv, yderiv;
     xderiv = (Gphi[checkbc(i+1,XSIZE)][j] - (2*Gphi[i][j]) + Gphi[checkbc(i-1,XSIZE)][j]);

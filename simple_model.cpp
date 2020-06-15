@@ -34,7 +34,7 @@ int main(int argc, char **argv){
         for (i = 0; i < XSIZE; i++){
             for(j = 0; j < YSIZE; j++){
                 double newphi = Gphi[i][j] - (GM * Gdt * (dfdphi(i,j) - (Geps2 * laplac(i,j))));
-                //set pixel colors in grayscale
+                //set pixel colors, can replace with commented lines for grayscale instead of blue/pink
                 img -> SetPixel(i, j, (RGBApixel){
                     .Blue = 176, //(ebmpBYTE)(255*Gphi[i][j]),
                     .Green = 138, //(ebmpBYTE)(255*Gphi[i][j]),
@@ -45,7 +45,7 @@ int main(int argc, char **argv){
             }
         }
        
-        //write image to file iterating name based on timestep
+        //write image to file iterating name based on timestep. Times below 10s get a leading zero added so that they sort correctly making a .gif later
     
         if (argc > 1){
             if (time < (10 - Gdt/2)){
